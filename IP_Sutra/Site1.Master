@@ -1,0 +1,169 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="IP_Sutra.Site1" %>
+
+
+<%@ Register Src="~/header.ascx" TagName="myhead" TagPrefix="wuc" %>
+<%@ Register Src="~/footer.ascx" TagName="myfoot" TagPrefix="wuc" %>
+<%@ Register Src="~/sidebar.ascx" TagName="myside" TagPrefix="wuc" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>IP Sutra</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <link href="img/logo/logo.png" rel="icon" />
+
+<%--  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />--%>
+<%--  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />--%>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+   <link rel="stylesheet" href="css/ruang-admin.min.css" /> 
+<%--    <link rel="stylesheet" href="css/ruang-admin.css" />--%>
+
+    
+       <style>
+            /* Add necessary CSS styles for Component 3 here */
+            .bg {
+
+
+              box-shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15);
+              background-color: #6777ef;
+              border-radius: 4px;
+
+
+            }
+
+            .card:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 .15rem 1.75rem 0 rgba(44, 56, 186, 0.15);
+              transition: transform 0.3s;
+            }
+          </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server" >
+    </asp:ContentPlaceHolder>
+</head>
+    
+<body id="page-top">
+
+    
+    <div id="wrapper">
+
+          <!-- Sidebar start -->
+
+
+              <wuc:myside ID="MySide" runat="server"></wuc:myside>
+
+
+
+
+        <!--End Sidebar -->
+
+
+             <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+
+
+           <!-- TopBar start -->
+
+           <wuc:myhead ID="h1" runat="server"></wuc:myhead>
+
+
+            <!-- TopBar End -->
+
+
+  <%--   <div class="dashboard-main-wrapper">--%>
+
+     
+         <form id="form1" class="forms-sample" runat="server">
+      <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+      </asp:ContentPlaceHolder>
+             </form>
+     
+<%--    </div>   --%>
+
+
+        </div> 
+    
+
+
+ <wuc:myfoot ID="Myfoot" runat="server"></wuc:myfoot>
+
+
+
+                </div>
+                <!---Container Fluid-->
+            </div>
+
+
+
+
+    <!-- Scroll to top -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+
+
+    <script>
+        $(function () {
+            setNavigation();
+        });
+
+        function setNavigation() {            
+            var path = window.location.pathname;
+            path = path.replace(/\/$/, "");
+            path = decodeURIComponent(path);
+
+            $(".mynav a").each(function () {                
+                var href = $(this).attr('href');
+                console.log(href + " -" + path.substring(1));
+                if ("/"+path.substring(1) === href) {                    
+                    $(this).addClass('active');
+                    if ($(this).parent().parent().parent().hasClass("submenu")) {
+                        $(this).parent().parent().parent().addClass("show")
+                    }
+                }
+            });
+        }
+    </script>
+      <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="js/ruang-admin.min.js"></script>
+
+
+        <script>
+            !function ($) {
+                "use strict"; $("#sidebarToggle, #sidebarToggleTop").on("click", (function (e) {
+                    $("body").toggleClass("sidebar-toggled")
+                        , $(".sidebar").toggleClass("toggled"), $(".sidebar").hasClass("toggled") && $(".sidebar .collapse").collapse("hide")
+                    // Toggle image size
+                    if ($(".sidebar").hasClass("toggled")) {
+                        $(".sidebar-brand img").css("width", "200px");
+                    } else {
+                        $(".sidebar-brand img").css("width", "100"); // Reset to default size
+                    }
+
+                })), $(window).resize((function () { $(window).width() < 768 && $(".sidebar .collapse").collapse("hide") })),
+                    $("body.fixed-nav .sidebar").on("mousewheel DOMMouseScroll wheel", (function (e) {
+                        if ($(window).width() > 768) { var e0 = e.originalEvent, delta = e0.wheelDelta || -e0.detail; this.scrollTop += 30 * (delta < 0 ? 1 : -1), e.preventDefault() }
+                    })), $(document).on("scroll", (function () { var scrollDistance; $(this).scrollTop() > 100 ? $(".scroll-to-top").fadeIn() : $(".scroll-to-top").fadeOut() })),
+                    $(document).on("click", "a.scroll-to-top", (function (e) {
+                        var $anchor = $(this); $("html, body").stop().animate({ scrollTop: $($anchor.attr("href")).offset().top },
+                            1e3, "easeInOutExpo"), e.preventDefault()
+                    }))
+            }(jQuery), $(document).ready((function () {
+                $("#myBtn").click((function () { $(".modal").modal("show") })), $("#modalLong").click((function () { $(".modal").modal("show") })),
+                    $("#modalScroll").click((function () { $(".modal").modal("show") })), $("#modalCenter").click((function () { $(".modal").modal("show") }))
+            })), $((function () { $('[data-toggle="popover"]').popover() })), $(".popover-dismiss").popover({ trigger: "focus" });
+            var version = document.getElementById("version-ruangadmin"); version.innerHTML = "Version 1.1";
+
+        </script>
+</body>
+    
+</html>
